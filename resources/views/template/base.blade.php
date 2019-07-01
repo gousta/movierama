@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://bootstrap.themes.guide/signal/theme.min.css">
-
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css">
 
     <style>
         #content {

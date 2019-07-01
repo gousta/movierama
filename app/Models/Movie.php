@@ -17,4 +17,14 @@ class Movie extends Model
     {
         return $this->hasMany('App\Models\Movie\Stats');
     }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Movie\Stats')->where('action', '=', 'like');
+    }
+
+    public function hates()
+    {
+        return $this->hasMany('App\Models\Movie\Stats')->where('action', '=', 'hate');
+    }
 }

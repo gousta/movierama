@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $movies = \App\Models\Movie::orderBy('created_at', 'desc')->get();
+        $movies = \App\Models\Movie::orderBy('created_at', 'desc')->take(10)->get();
 
         return view('home', ['movies' => $movies]);
     }
