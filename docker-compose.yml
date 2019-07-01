@@ -1,0 +1,48 @@
+version: "2"
+
+volumes:
+  movierama-postgres-data:
+    driver: local
+  movierama-redis-data:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:10.3
+    container_name: movierama-postgres
+    volumes:
+      - movierama-postgres-data:/var/lib/postgresql/data
+      - /tmp:/tmp
+    ports:
+      - "25100:5432"
+    networks:
+      - movierama-network
+    environment:
+      - POSTGRES_PASSWORD=movierama
+      - POSTGRES_DB=movierama
+      - POSTGRES_USER=movierama
+
+  nginx:
+    image: nginx:latest
+    container_name: movierama-nginx
+    volumes:
+      - .:/application
+      - ./docker/nginx:/etc/nginx/conf.d
+    ports:
+      - "8100:80"
+    networks:
+      - movierama-network
+
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: movierama-php
+    volumes:
+      - .:/application
+    networks:
+      - movierama-network
+
+networks:
+  movierama-network:
+    driver: bridge
