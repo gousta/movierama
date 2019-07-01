@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-use Socialite;
-
 class LoginController extends Controller
 {
     /*
@@ -46,7 +44,7 @@ class LoginController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver('github')->redirect();
+        return \Socialite::driver('github')->redirect();
     }
 
     /**
@@ -57,24 +55,24 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $social = Socialite::driver('github')->user();
-            $user = User::where('email', '=', $social->email);
+            $social = \Socialite::driver('github')->user();
+            $user = \App\Models\User::where('email', '=', $social->email)->first();
 
             if (!$user) {
-                $user = User::create([
+                $user = \App\Models\User::create([
                     'name' => $social->name,
                     'nickname' => $social->nickname,
                     'email' => $social->email,
-                    'password' => null,
                     'email_verified_at' => \Carbon\Carbon::now(),
                 ]);
             }
 
-            Auth::loginUsingId($user->id, true);
+            \Auth::loginUsingId($user->id, true);
 
-            return redirect('/');
+            return redirect('/?success=Logged+in');
         } catch (\Throwable $th) {
-            return redirect('/');
+            dd($th);
+            return redirect('/?error=Error+logging+in');
         }
     }
 }
