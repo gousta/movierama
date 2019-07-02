@@ -27,4 +27,12 @@ class MovieController extends Controller
 
         return redirect(route('user.show', ['nickname' => $user->nickname]));
     }
+
+    public function act(Request $request, $id)
+    {
+        $action = $request->input('action', null);
+
+        $movie = \App\Models\Movie::findOrFail($id);
+        dd($id, $action);
+    }
 }

@@ -8,15 +8,6 @@
 
 @section('content')
 
-    <div class="row">
-        <div class="col-sm">
-            @include('components.logo')
-        </div>
-        <div class="col-sm text-right">
-            @include('components.user')
-        </div>
-    </div>
-
     <div class="row mt-4">
         <div class="col-sm">
             @foreach($movies as $movie)
