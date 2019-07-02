@@ -9,6 +9,7 @@ class Stats extends Model
     public $table = 'movie_stats';
 
     protected $guarded = [];
+    public $timestamps = false;
 
     public function movie()
     {
