@@ -30,12 +30,12 @@
     <p>{{ $movie->description }}</p>
 
     <div class="actions">
-        <span class="control control-action {{ in_array(Auth::user()->id, $movie->likes_users) ? 'active':'' }} {{ Auth::user()->id === $movie->user_id ? 'disabled':'' }}" data-action="like">
+        <span class="control control-action {{ Auth::user() && in_array(Auth::user()->id, $movie->likes_users) ? 'active':'' }} {{ Auth::user() && Auth::user()->id === $movie->user_id ? 'disabled':'' }}" data-action="like">
             <span class="count">{{ $movie->likes }}</span>
             <i class="far fa-thumbs-up"></i>
         </span>
         <span class="divider" />
-        <span class="control control-action {{ in_array(Auth::user()->id, $movie->hates_users) ? 'active':'' }} {{ Auth::user()->id === $movie->user_id ? 'disabled':'' }}" data-action="hate">
+        <span class="control control-action {{ Auth::user() && in_array(Auth::user()->id, $movie->hates_users) ? 'active':'' }} {{ Auth::user() && Auth::user()->id === $movie->user_id ? 'disabled':'' }}" data-action="hate">
             <span class="count">{{ $movie->hates }}</span>
             <i class="far fa-thumbs-down"></i>
         </span>
