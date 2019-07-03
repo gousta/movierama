@@ -30,7 +30,7 @@
                     </div>
                 </li>
             @else
-                <a href="{{ route('login') }}">Sign up/Sign In</a>
+                <a href="{{ route('login') }}">Sign in with Github</a>
             @endif
 
         </ul>
