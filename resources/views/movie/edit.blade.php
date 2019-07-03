@@ -5,7 +5,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home.index') }}">MovieRama</a></li>
             <li class="breadcrumb-item"><a href="{{ route('user.show', ['nickname' => $user->nickname]) }}">My Movies</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add a movie</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit a movie</li>
         </ol>
     </nav>
 
@@ -13,9 +13,9 @@
         <div class="col-sm">
             @include('components.form-errors')
 
-            <h3>Add a movie</h3>
+            <h3>Edit a movie</h3>
 
-            <form action="{{ route('movie.store') }}" method="post">
+            <form action="{{ route('movie.update', $movie->id) }}" method="post">
                 {{ csrf_field() }}
 
                 @include('movie.form')
