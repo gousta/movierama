@@ -9,7 +9,9 @@ class UserController extends Controller
 {
     public function show($nickname)
     {
-        $user = User::with('movies')
+        $user = User::with(['movies' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])
             ->where('nickname', $nickname)
             ->firstOrFail();
 
