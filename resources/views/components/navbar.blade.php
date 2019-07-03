@@ -24,7 +24,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="movieDropdown">
                         <h6 class="dropdown-header">Movies</h6>
                         <a class="dropdown-item {{ \Request::route()->getName() === 'user.show' ? 'active':'' }}" href="{{ route('user.show', ['nickname' => Auth::user()->nickname]) }}">My movies</a>
-                        <a class="dropdown-item {{ \Request::route()->getName() === 'movie.create' ? 'active':'' }}" href="{{ route('movie.create') }}">New movie</a>
+                        <a class="dropdown-item {{ \Request::route()->getName() === 'movie.create' ? 'active':'' }}" href="{{ route('movie.create') }}">Add a movie</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/logout">Log out</a>
                     </div>

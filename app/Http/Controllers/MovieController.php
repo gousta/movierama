@@ -12,7 +12,9 @@ class MovieController extends Controller
 {
     public function create()
     {
-        return view('movie.create');
+        return view('movie.create', [
+            'user' => Auth::user(),
+        ]);
     }
 
     public function store(Request $request)
