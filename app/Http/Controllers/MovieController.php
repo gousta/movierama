@@ -18,12 +18,13 @@ class MovieController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $user = Auth::user();
 
         return view('movie.create', [
             'user' => $user,
+            'movie' => $request->old()
         ]);
     }
 

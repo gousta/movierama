@@ -13,8 +13,6 @@
         <div class="col-sm">
             @include('components.form-errors')
 
-            <h3>Edit a movie</h3>
-
             <form action="{{ route('movie.update', $movie->id) }}" method="post">
                 {{ csrf_field() }}
 

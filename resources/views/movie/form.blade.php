@@ -1,10 +1,10 @@
 <div class="py-3">
     <label>Title</label>
-    <input type="text" name="title" class="form-control" required value="{{ $movie['title'] }}" />
+    <input type="text" name="title" class="form-control" required value="{{ $movie['title'] ?? '' }}" />
 </div>
 <div class="py-3">
     <label>Description</label>
-    <textarea name="description" class="form-control" required>{{ $movie['description'] }}</textarea>
+    <textarea name="description" class="form-control" required>{{ $movie['description'] ?? '' }}</textarea>
 </div>
 
 <div class="text-right">
