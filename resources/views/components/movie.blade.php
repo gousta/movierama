@@ -10,7 +10,7 @@
         .movie p { margin: 8px 0 0 0;}
 
 
-        .movie .actions { margin-top: 8px; }
+        .movie .actions { margin-top: 16px; }
         .movie .actions .divider { margin: 0 16px; }
         .movie .control { background: #fff; border-radius: 4px; padding: 4px 8px; border: 1px solid #f2f2f2; }
         .movie .control.active { border: 1px solid #666; }
@@ -52,29 +52,30 @@
 
                     $.get("{{ route('movie.act') }}?movieId=" + movieId + "&action=" + action)
                         .done(function(res) {
-                            console.log('done', res);
+                            if(res && res.status === 'ok') {
+                                var movieBlock = $('.movie[data-id="'+movieId+'"]');
+                                var likeAction = movieBlock.find('[data-action="like"]');
+                                var hateAction = movieBlock.find('[data-action="hate"]');
+
+                                if(res.data.action === 'like') {
+                                    likeAction.addClass('active');
+                                    hateAction.removeClass('active');
+                                } else if(res.data.action === 'hate') {
+                                    likeAction.removeClass('active');
+                                    hateAction.addClass('active');
+                                } else {
+                                    likeAction.removeClass('active');
+                                    hateAction.removeClass('active');
+                                }
+
+                                likeAction.find('.count').text(res.data.likes);
+                                hateAction.find('.count').text(res.data.hates);
+                            } else {
+                                $.snackbar({ content: res.error });
+                            }
                         })
                         .fail(function(res) {
                             $.snackbar({ content: "Failed" });
-                        })
-                        .always(function(res) {
-                            var movieBlock = $('.movie[data-id="'+movieId+'"]');
-                            var likeAction = movieBlock.find('[data-action="like"]');
-                            var hateAction = movieBlock.find('[data-action="hate"]');
-
-                            if(res.data.action === 'like') {
-                                likeAction.addClass('active');
-                                hateAction.removeClass('active');
-                            } else if(res.data.action === 'hate') {
-                                likeAction.removeClass('active');
-                                hateAction.addClass('active');
-                            } else {
-                                likeAction.removeClass('active');
-                                hateAction.removeClass('active');
-                            }
-
-                            likeAction.find('.count').text(res.data.likes);
-                            hateAction.find('.count').text(res.data.hates);
                         });
                 }
             });

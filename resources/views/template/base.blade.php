@@ -8,13 +8,24 @@
     <title>{{ config('app.name') }}</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://bootstrap.themes.guide/signal/theme.min.css">
+    <link rel="stylesheet" href="/css/signal.css">
     <link rel="stylesheet" href="/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/snackbarjs/1.1.0/snackbar.min.css" />
 
     <style>
         #content {
             margin-top: 32px;
+        }
+
+        .snackbar {
+            margin: 8px 0;
+            background: #212121;
+            border-radius: 4px;
+            padding: 6px 12px;
+        }
+
+        .snackbar-content {
+            color: #fff;
         }
     </style>
     @stack('styles')
