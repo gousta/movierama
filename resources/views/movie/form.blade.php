@@ -4,7 +4,7 @@
 </div>
 <div class="py-3">
     <label>Description</label>
-    <textarea name="description" class="form-control" required>{{ $movie['description'] ?? '' }}</textarea>
+    <textarea name="description" class="form-control" rows="11" required>{{ $movie['description'] ?? '' }}</textarea>
 </div>
 
 <div class="text-right">

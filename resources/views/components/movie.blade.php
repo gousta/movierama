@@ -7,7 +7,7 @@
             padding: 16px;
         }
         .movie small { color: #999; }
-        .movie p { margin: 8px 0 0 0; }
+        .movie p { margin: 8px 0 0 0; overflow: hidden; line-height: 22px; }
         .movie .actions .count { margin-right: 8px; }
 
         .movie .actions { margin-top: 16px; }
@@ -26,7 +26,7 @@
         &mdash;
         {{ $movie->created_at->diffForHumans() }}
     </small>
-    <p>{{ $movie->description }}</p>
+    <p>{!! nl2br($movie->description) !!}</p>
 
     <div class="row actions">
         <div class="col-sm">
@@ -51,8 +51,11 @@
 </div>
 
 @pushonce('scripts:movie')
+    <script src="https://cdn.jsdelivr.net/npm/readmore-js@2.2.1/readmore.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('.movie p').readmore();
+
             $(document).on('click', '.control-action', function() {
                 if(!$(this).hasClass('disabled')) {
                     var movieId = $(this).closest('.movie').data('id');
