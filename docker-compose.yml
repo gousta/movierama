@@ -5,7 +5,7 @@ volumes:
     driver: local
 
 services:
-  postgres:
+  movierama_postgres:
     image: postgres:10.3
     container_name: movierama_postgres
     volumes:
@@ -18,7 +18,7 @@ services:
       - POSTGRES_DB=movierama
       - POSTGRES_USER=movierama
 
-  nginx:
+  movierama_nginx:
     image: nginx:latest
     container_name: movierama_nginx
     volumes:
@@ -27,7 +27,7 @@ services:
     ports:
       - "8500:80"
 
-  php:
+  movierama_php:
     build:
       context: ./docker/php
       dockerfile: Dockerfile
