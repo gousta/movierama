@@ -20,6 +20,9 @@
             <div class="mb-2">
                 <a href="{{ route('login.provider', 'facebook') }}" class="btn btn-secondary"><span class="fab fa-facebook"></span> Continue with Facebook</a>
             </div>
+            <div class="mb-2">
+                <a href="{{ route('login.provider', 'linkedin') }}" class="btn btn-secondary"><span class="fab fa-linkedin"></span> Continue with LinkedIn</a>
+            </div>
         </div>
     </div>
 
