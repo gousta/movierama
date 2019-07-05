@@ -27,6 +27,10 @@
         .snackbar-content {
             color: #fff;
         }
+
+        .navbar {
+            background-color: #e9ecef;
+        }
     </style>
     @stack('styles')
 </head>

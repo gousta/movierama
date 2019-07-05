@@ -10,26 +10,34 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MovieController extends Controller
 {
-    public function create()
+    private function validateMovieData($request)
     {
+        return $request->validate([
+            'title' => 'required|unique:movies|max:255',
+            'description' => 'required|max:50000',
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        $user = Auth::user();
+
         return view('movie.create', [
-            'user' => Auth::user(),
+            'user' => $user,
+            'movie' => $request->old()
         ]);
     }
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|unique:movies|max:255',
-            'description' => 'required|max:50000',
-        ]);
+        $validatedData = $this->validateMovieData($request);
 
         $user = \Auth::user();
         $validatedData['user_id'] = $user->id;
 
         Movie::create($validatedData);
 
-        return redirect(route('user.show', ['nickname' => $user->nickname]));
+        return redirect()->route('user.show', ['nickname' => $user->nickname]);
     }
 
     public function act(Request $request)
@@ -70,5 +78,39 @@ class MovieController extends Controller
                 'action' => $action
             ]
         ]);
+    }
+
+    public function edit($id)
+    {
+        $user = Auth::user();
+        $movie = Movie::findOrFail($id);
+
+        if ($movie->user_id !== $user->id) {
+            return redirect()->route('show.user', $user->id);
+        }
+
+        return view('movie.edit', [
+            'movie' => $movie,
+            'user' => $user
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $this->validateMovieData($request);
+        $movie = Movie::findOrFail($id);
+        $movie->update($validatedData);
+
+        return redirect()->route('movie.edit', $movie->id);
+    }
+
+    public function delete($id)
+    {
+        $user = Auth::user();
+        $movie = Movie::findOrFail($id);
+        Stats::where('movie_id', $movie->id)->delete();
+        $movie->delete();
+
+        return redirect()->route('user.show', $user->nickname);
     }
 }
