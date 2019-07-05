@@ -4,6 +4,7 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/movies/{sort?}', 'HomeController@index')->name('home.index');
 Route::get('user/{nickname}', 'UserController@show')->name('user.show');
 
+Route::get('docs', 'DocsController@index')->name('docs.index');
 
 Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name('login');
 Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback')->name('login.callback');

@@ -40,6 +40,12 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="/">MovieRama</a>
 
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('docs.index') }}">API Docs</a>
+                </li>
+            </ul>
+
             <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
                 @if(Auth::check())
                     <li class="nav-item dropdown">
