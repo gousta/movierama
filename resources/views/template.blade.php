@@ -63,7 +63,7 @@
                     </li>
                 @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.signin') }}"><span class="fas fa-sign-in-alt"></span> Sign in</a>
+                    <a class="nav-link" href="{{ route('login') }}"><span class="fas fa-sign-in-alt"></span> Log in</a>
                 </li>
                 @endif
             </ul>

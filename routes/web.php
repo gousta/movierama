@@ -3,10 +3,10 @@
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/movies/{sort?}', 'HomeController@index')->name('home.index');
 
+Route::get('login', 'HomeController@login')->name('login');
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('login.provider.callback');
 
-Route::get('user/signin', 'UserController@signin')->name('user.signin');
 Route::get('user/{nickname}', 'UserController@show')->name('user.show');
 
 Route::get('docs', 'DocsController@index')->name('docs.index');
