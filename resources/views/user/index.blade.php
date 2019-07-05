@@ -1,4 +1,4 @@
-@extends('template.base')
+@extends('template')
 
 {{-- @push('styles')
     <style>
@@ -26,7 +26,7 @@
             <h3>Movies</h3>
 
             @foreach($user->movies as $movie)
-                @include('components.movie', ['movie' => $movie])
+                @include('movie.card', ['movie' => $movie])
             @endforeach
         </div>
     </div>

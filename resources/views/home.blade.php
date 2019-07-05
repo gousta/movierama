@@ -1,4 +1,4 @@
-@extends('template.base')
+@extends('template')
 
 {{-- @push('styles')
     <style>
@@ -25,7 +25,7 @@
     <div class="row mt-4">
         <div class="col-sm">
             @foreach($movies as $movie)
-                @include('components.movie', ['movie' => $movie])
+                @include('movie.card', ['movie' => $movie])
             @endforeach
 
             {{ $movies->appends(['sort' => $sort])->links() }}

@@ -69,10 +69,9 @@ class LoginController extends Controller
 
             \Auth::loginUsingId($user->id, true);
 
-            return redirect('/?success=Logged+in');
+            return redirect()->route('home.index')->with('success', 'Hello ' . $user->name);
         } catch (\Throwable $th) {
-            dd($th);
-            return redirect('/?error=Error+logging+in');
+            return redirect()->route('home.index')->with('success', 'Sign in failed because of an internal error');
         }
     }
 }

@@ -1,3 +1,14 @@
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
 <div class="py-3">
     <label>Title</label>
     <input type="text" name="title" class="form-control" required value="{{ $movie['title'] ?? '' }}" />

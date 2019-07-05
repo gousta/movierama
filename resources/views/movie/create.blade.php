@@ -1,4 +1,4 @@
-@extends('template.base')
+@extends('template')
 
 @section('content')
     <nav aria-label="breadcrumb">
@@ -11,8 +11,6 @@
 
     <div class="row">
         <div class="col-sm">
-            @include('components.form-errors')
-
             <form action="{{ route('movie.store') }}" method="post">
                 {{ csrf_field() }}
 

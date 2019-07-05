@@ -85,8 +85,8 @@ class MovieController extends Controller
         $user = Auth::user();
         $movie = Movie::findOrFail($id);
 
-        if ($movie->user_id !== $user->id) {
-            return redirect()->route('show.user', $user->id);
+        if ($movie->user_id !== $user->id || !$user) {
+            return redirect()->route('home.index')->with('error', 'You may only edit your movies');
         }
 
         return view('movie.edit', [
