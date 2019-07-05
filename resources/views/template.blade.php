@@ -46,7 +46,7 @@
                 </li>
             </ul>
 
-            <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
+            <ul class="navbar-nav ml-auto">
                 @if(Auth::check())
                     <li class="nav-item dropdown">
                         <a class="nav-item nav-link dropdown-toggle mr-md-2" href="#" id="movieDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -62,7 +62,9 @@
                         </div>
                     </li>
                 @else
-                    <li><a href="{{ route('login') }}">Sign in with Github</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.signin') }}"><span class="fas fa-sign-in-alt"></span> Sign in</a>
+                </li>
                 @endif
             </ul>
         </nav>

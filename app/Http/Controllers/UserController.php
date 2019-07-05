@@ -17,4 +17,9 @@ class UserController extends Controller
 
         return view('user.index', ['user' => $user]);
     }
+
+    public function signin()
+    {
+        return view('user.signin');
+    }
 }
