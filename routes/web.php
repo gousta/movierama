@@ -2,12 +2,14 @@
 
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/movies/{sort?}', 'HomeController@index')->name('home.index');
+
+Route::get('login', 'HomeController@login')->name('login');
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('login.provider');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback')->name('login.provider.callback');
+
 Route::get('user/{nickname}', 'UserController@show')->name('user.show');
 
 Route::get('docs', 'DocsController@index')->name('docs.index');
-
-Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name('login');
-Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback')->name('login.callback');
 
 Route::get('movie/act', 'MovieController@act')->name('movie.act');
 

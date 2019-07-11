@@ -29,6 +29,11 @@ class HomeController extends Controller
         return view('home', ['sort' => $sort, 'movies' => $movies]);
     }
 
+    public function login()
+    {
+        return view('login');
+    }
+
     public function logout()
     {
         \Auth::logout();

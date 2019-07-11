@@ -42,9 +42,9 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
-        return \Socialite::driver('github')->redirect();
+        return \Socialite::driver($provider)->redirect();
     }
 
     /**
@@ -52,11 +52,12 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
         try {
-            $social = \Socialite::driver('github')->user();
+            $social = \Socialite::driver($provider)->user();
             $user = \App\Models\User::where('email', '=', $social->email)->first();
+
 
             if (!$user) {
                 $user = \App\Models\User::create([
@@ -71,6 +72,8 @@ class LoginController extends Controller
 
             return redirect()->route('home.index')->with('success', 'Hello ' . $user->name);
         } catch (\Throwable $th) {
+            \Log::error($th);
+            dd($th);
             return redirect()->route('home.index')->with('success', 'Sign in failed because of an internal error');
         }
     }
