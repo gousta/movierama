@@ -8,8 +8,7 @@
 - Run `docker-compose exec movierama_php php artisan migrate`
 - Run `docker-compose exec movierama_php php artisan db:seed` to get some initial data
 - Run `cp .env.example .env`
-- Add `127.0.0.1 movierama.local` to your hosts
-- Open http://movierama.local:8500 to access the app
+- Open http://localhost:8500 to access the app
 
 ### Specs
 - Users​ ​should​ ​be​ ​able​ ​to​ ​log​ ​into​ ​their​ ​account​ ​or​ ​sign​ ​up​ ​for​ ​a​ ​new​ ​one 
