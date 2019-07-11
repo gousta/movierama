@@ -3,10 +3,10 @@
 ### Installation
 - Clone repository
 - Open a terminal, go to the repo, run `docker-compose up -d`
-- Run `docker-compose php composer install`
-- Run `docker-compose php php artisan key:generate`
-- Run `docker-compose php php artisan migrate`
-- Run `docker-compose php php artisan db:seed` to get some initial data
+- Run `docker-compose exec movierama_php composer install`
+- Run `docker-compose exec movierama_php php artisan key:generate`
+- Run `docker-compose exec movierama_php php artisan migrate`
+- Run `docker-compose exec movierama_php php artisan db:seed` to get some initial data
 - Run `cp .env.example .env`
 - Add `127.0.0.1 movierama.local` to your hosts
 - Open http://movierama.local:8500 to access the app
